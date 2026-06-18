@@ -11,6 +11,7 @@ import PrintPreviewModal from './components/PrintPreviewModal';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import AIAssistantWidget from './components/AIAssistantWidget';
+import InactivityTimer from './components/InactivityTimer';
 
 // Pages import
 import Dashboard from './pages/Dashboard';
@@ -141,6 +142,7 @@ function AppContent() {
     <>
       {mainContent}
       <AIAssistantWidget />
+      <InactivityTimer />
     </>
   );
 }
