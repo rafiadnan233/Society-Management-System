@@ -177,6 +177,7 @@ export default function Login({ onRegisterClick }: LoginProps) {
   const [valConstructionPercent, setValConstructionPercent] = useState(85);
   const [valConstructionDescEn, setValConstructionDescEn] = useState('');
   const [valConstructionDescBn, setValConstructionDescBn] = useState('');
+  const [constructionProcessingCount, setConstructionProcessingCount] = useState(0);
 
   // Form Fields State: Leadership Card
   const [leaderInitials, setLeaderInitials] = useState('');
@@ -1632,6 +1633,7 @@ export default function Login({ onRegisterClick }: LoginProps) {
     }
     setValConstructionImages(initialImages);
     setValConstructionNewUrl('');
+    setConstructionProcessingCount(0);
     setValConstructionPercent(config.constructionPercent !== undefined ? config.constructionPercent : 85);
     setValConstructionDescEn(config.constructionDescEn || "Sub-grade foundation and pile capping have been 100% completed...");
     setValConstructionDescBn(config.constructionDescBn || "মাটির পাইলিং এবং ফুটিং বেইসের কাজ ১০০% সুরক্ষায় সমাপ্ত হয়েছে...");
@@ -4157,15 +4159,18 @@ export default function Login({ onRegisterClick }: LoginProps) {
                           );
                         }
 
+                        let unprocessed = incomingLength;
+                        setConstructionProcessingCount(unprocessed);
+
                         Array.from(files).forEach(file => {
                           const reader = new FileReader();
                           reader.onload = (event) => {
                             const img = new Image();
                             img.onload = () => {
                               const canvas = document.createElement('canvas');
-                              // Scale down to 750 max width/height for amazing speed, mobile optimization and tiny storage footprints
-                              const MAX_WIDTH = 750;
-                              const MAX_HEIGHT = 750;
+                              // Scale down to 600 max width/height for amazing speed, mobile optimization and tiny storage footprints
+                              const MAX_WIDTH = 600;
+                              const MAX_HEIGHT = 600;
                               let width = img.width;
                               let height = img.height;
                               if (width > height) {
@@ -4184,14 +4189,25 @@ export default function Login({ onRegisterClick }: LoginProps) {
                               const ctx = canvas.getContext('2d');
                               ctx?.drawImage(img, 0, 0, width, height);
                               
-                              // Compress to quality 0.52 (~15KB per image, retaining brilliant structural clarity), preventing any Firestore 1MB limits
-                              const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.52);
+                              // Compress to high-efficiency jpeg @ 0.40 (~12KB per image without losing structural features)
+                              const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.40);
                               setValConstructionImages(prev => {
                                 if (prev.length >= 12) return prev;
                                 return [...prev, compressedDataUrl];
                               });
+                              
+                              unprocessed = Math.max(0, unprocessed - 1);
+                              setConstructionProcessingCount(unprocessed);
+                            };
+                            img.onerror = () => {
+                              unprocessed = Math.max(0, unprocessed - 1);
+                              setConstructionProcessingCount(unprocessed);
                             };
                             img.src = event.target?.result as string;
+                          };
+                          reader.onerror = () => {
+                            unprocessed = Math.max(0, unprocessed - 1);
+                            setConstructionProcessingCount(unprocessed);
                           };
                           reader.readAsDataURL(file as any);
                         });
@@ -4264,7 +4280,15 @@ export default function Login({ onRegisterClick }: LoginProps) {
                 />
               </div>
 
-              <div className="flex justify-end gap-2.5 pt-2 border-t border-emerald-950">
+              <div className="flex justify-end gap-2.5 pt-2 border-t border-emerald-950 items-center">
+                {constructionProcessingCount > 0 && (
+                  <span className="flex items-center gap-1.5 text-[10px] text-amber-400 font-mono animate-pulse mr-auto">
+                    <span className="w-2.5 h-2.5 rounded-full border-2 border-amber-400 border-t-transparent animate-spin" />
+                    {language === 'bn' 
+                      ? `ছবি প্রসেস হচ্ছে (${constructionProcessingCount}টি বাকি)...` 
+                      : `Processing images (${constructionProcessingCount} left)...`}
+                  </span>
+                )}
                 <button
                   type="button"
                   onClick={() => setShowConstructionModal(false)}
@@ -4274,9 +4298,16 @@ export default function Login({ onRegisterClick }: LoginProps) {
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-1.5 bg-emerald-600 rounded border border-[#D4AF37]/35 text-white hover:bg-emerald-500 font-bold cursor-pointer"
+                  disabled={constructionProcessingCount > 0}
+                  className={`px-4 py-1.5 rounded border font-bold cursor-pointer transition-all ${
+                    constructionProcessingCount > 0
+                      ? 'bg-neutral-800 border-amber-500/30 text-slate-500 cursor-not-allowed'
+                      : 'bg-emerald-600 border-[#D4AF37]/35 text-white hover:bg-emerald-500 hover:scale-[1.02]'
+                  }`}
                 >
-                  {language === 'bn' ? 'অগ্রগতি হালনাগাদ করুন' : 'Confirm Milestones'}
+                  {constructionProcessingCount > 0 
+                    ? (language === 'bn' ? 'প্রসেস হচ্ছে...' : 'Processing...') 
+                    : (language === 'bn' ? 'অগ্রগতি হালনাগাদ করুন' : 'Confirm Milestones')}
                 </button>
               </div>
             </form>

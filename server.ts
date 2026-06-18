@@ -83,42 +83,40 @@ app.post("/api/gemini/generate", async (req, res) => {
       parts: [{ text: prompt }],
     });
 
-    // Helper to query Gemini with retry capabilities and seamless fallback to lighter models
+    // Helper to query Gemini with sequential routing for high availability
     const queryGeminiWithFallback = async () => {
-      const modelsToTry = ["gemini-3.5-flash", "gemini-flash-latest", "gemini-3.1-flash-lite"];
-      const maxRetriesPerModel = 2;
+      // Robust order of models, from primary down to high-compatibility and backup options
+      const modelsToTry = [
+        "gemini-3.5-flash", 
+        "gemini-flash-latest", 
+        "gemini-3.1-flash-lite",
+        "gemini-3.1-pro-preview"
+      ];
 
       for (const modelName of modelsToTry) {
-        for (let attempt = 1; attempt <= maxRetriesPerModel; attempt++) {
-          try {
-            console.log(`[Gemini Request] Model: ${modelName}, Attempt: ${attempt}/${maxRetriesPerModel}`);
-            const res = await ai.models.generateContent({
-              model: modelName,
-              contents: contents,
-              config: {
-                systemInstruction: ASTHA_SYSTEM_INSTRUCTION + 
-                  (systemContext ? `\n\n[Real-time Operational Context of Astha Twin Towers]:\n${systemContext}\n\nPlease use this live data from the Society Management System to answer the user's questions confidently and accurately. Refer to staff names, phone numbers, flats, committee designations, active notices, construction progress, or complaints whenever they ask. Default to Bangla unless specified otherwise.` : ""),
-                temperature: 0.7,
-                maxOutputTokens: 1000,
-              }
-            });
-            if (res && res.text) {
-              console.log(`[Gemini Success] Resolved using model: ${modelName}`);
-              return res;
+        try {
+          console.log(`[Gemini Request] Attempting model: ${modelName}`);
+          const res = await ai.models.generateContent({
+            model: modelName,
+            contents: contents,
+            config: {
+              systemInstruction: ASTHA_SYSTEM_INSTRUCTION + 
+                (systemContext ? `\n\n[Real-time Operational Context of Astha Twin Towers]:\n${systemContext}\n\nPlease use this live data from the Society Management System to answer the user's questions confidently and accurately. Refer to staff names, phone numbers, flats, committee designations, active notices, construction progress, or complaints whenever they ask. Default to Bangla unless specified otherwise.` : ""),
+              temperature: 0.7,
+              maxOutputTokens: 1000,
             }
-          } catch (modelErr: any) {
-            console.warn(`[Gemini Warning] Model ${modelName} failed on attempt ${attempt}:`, modelErr?.message || modelErr);
-            
-            // If we have remaining attempts for this model, sleep briefly before retrying
-            if (attempt < maxRetriesPerModel) {
-              const backoffMs = attempt * 1200;
-              console.log(`[Gemini Backoff] Sleeping for ${backoffMs}ms before retrying ${modelName}...`);
-              await new Promise((resolve) => setTimeout(resolve, backoffMs));
-            }
+          });
+          if (res && res.text) {
+            console.log(`[Gemini Success] Successfully resolved using model: ${modelName}`);
+            return res;
           }
+        } catch (modelErr: any) {
+          const errMsg = modelErr?.message || String(modelErr);
+          console.warn(`[Gemini Warning] Model ${modelName} returned error or demand spike. Error: ${errMsg}`);
+          // Immediate fallback to next configured model without blocking delay
         }
       }
-      throw new Error("All configured Gemini models returned errors or are currently unavailable due to extreme demand.");
+      throw new Error("All configured Gemini models are currently experiencing high demand or returned temporary errors.");
     };
 
     // Smart local semantic fallback response generator for offline resilience
