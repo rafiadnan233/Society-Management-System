@@ -179,93 +179,93 @@ export default function Dashboard() {
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-5">
         
         {/* KPI: Members */}
-        <div className="rounded-xl border border-indigo-500/30 bg-gradient-to-br from-indigo-900/60 to-indigo-950 p-4 relative overflow-hidden group hover:border-indigo-400/50 shadow-lg transition-all">
-          <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-indigo-500/10 blur-xl group-hover:bg-indigo-400/20 transition-all"></div>
+        <div className="rounded-xl border border-[#D4AF37]/30 bg-gradient-to-br from-[#4a050b] to-[#250003] p-4 relative overflow-hidden group hover:border-[#D4AF37]/60 shadow-lg transition-all">
+          <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-[#D4AF37]/5 blur-xl group-hover:bg-[#D4AF37]/15 transition-all"></div>
           <div className="flex items-center justify-between relative z-10">
-            <span className="text-[18px] font-bold text-indigo-300 font-sans">
+            <span className="text-[18px] font-black text-[#D4AF37] font-sans">
               {t.stats_members}
             </span>
-            <div className="rounded-md p-1.5 bg-indigo-500/20 text-indigo-300 border border-indigo-400/30">
+            <div className="rounded-md p-1.5 bg-[#D4AF37]/10 text-[#D4AF37] border border-[#D4AF37]/20">
               <Users className="h-4 w-4" />
             </div>
           </div>
-          <p className="text-xl sm:text-2xl font-bold text-white tracking-tight mt-2 relative z-10">
+          <p className="text-xl sm:text-2xl font-black text-[#FFD700] tracking-tight mt-2 relative z-10">
             {formatNumber(totalResidents)}
           </p>
-          <p className="text-[9px] text-indigo-200 mt-1 relative z-10">
+          <p className="text-[9px] text-amber-200/80 mt-1 relative z-10">
             • {formatNumber(members.filter(m => m.type === 'Owner').length)} {language === 'bn' ? 'মালিক' : 'Owners'}
           </p>
         </div>
 
         {/* KPI: Flats */}
-        <div className="rounded-xl border border-cyan-500/30 bg-gradient-to-br from-cyan-900/60 to-cyan-950 p-4 relative overflow-hidden group hover:border-cyan-400/50 shadow-lg transition-all">
-          <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-cyan-500/10 blur-xl group-hover:bg-cyan-400/20 transition-all"></div>
+        <div className="rounded-xl border border-[#D4AF37]/30 bg-gradient-to-br from-[#4a050b] to-[#250003] p-4 relative overflow-hidden group hover:border-[#D4AF37]/60 shadow-lg transition-all">
+          <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-[#D4AF37]/5 blur-xl group-hover:bg-[#D4AF37]/15 transition-all"></div>
           <div className="flex items-center justify-between relative z-10">
-            <span className="text-[18px] font-bold text-cyan-300 font-sans">
+            <span className="text-[18px] font-black text-[#D4AF37] font-sans">
               {t.stats_flats}
             </span>
-            <div className="rounded-md p-1.5 bg-cyan-500/20 text-cyan-300 border border-cyan-400/30">
+            <div className="rounded-md p-1.5 bg-[#D4AF37]/10 text-[#D4AF37] border border-[#D4AF37]/20">
               <Building className="h-4 w-4" />
             </div>
           </div>
-          <p className="text-xl sm:text-2xl font-bold text-white tracking-tight mt-2 relative z-10">
+          <p className="text-xl sm:text-2xl font-black text-[#FFD700] tracking-tight mt-2 relative z-10">
             {formatNumber(totalFlats)}
           </p>
-          <p className="text-[9px] text-cyan-200 mt-1 relative z-10">
+          <p className="text-[9px] text-amber-200/80 mt-1 relative z-10">
             • {formatNumber(vacantFlats)} {language === 'bn' ? 'খালি ফ্ল্যাট' : 'Vacant Units'}
           </p>
         </div>
 
         {/* KPI: Total Collection */}
-        <div className="rounded-xl border border-emerald-500/30 bg-gradient-to-br from-emerald-900/60 to-emerald-950 p-4 relative overflow-hidden group hover:border-emerald-400/50 shadow-lg transition-all col-span-2 lg:col-span-1">
-          <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-emerald-500/10 blur-xl group-hover:bg-emerald-400/20 transition-all"></div>
+        <div className="rounded-xl border border-[#D4AF37]/30 bg-gradient-to-br from-[#4a050b] to-[#250003] p-4 relative overflow-hidden group hover:border-[#D4AF37]/60 shadow-lg transition-all col-span-2 lg:col-span-1">
+          <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-[#D4AF37]/5 blur-xl group-hover:bg-[#D4AF37]/15 transition-all"></div>
           <div className="flex items-center justify-between relative z-10">
-            <span className="text-[18px] font-bold text-emerald-300 font-sans">
+            <span className="text-[18px] font-black text-[#D4AF37] font-sans">
               {t.stats_collections}
             </span>
-            <div className="rounded-md p-1.5 bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
+            <div className="rounded-md p-1.5 bg-[#D4AF37]/10 text-[#D4AF37] border border-[#D4AF37]/20">
               <TrendingUp className="h-4 w-4" />
             </div>
           </div>
-          <p className="text-xl sm:text-2xl font-bold text-emerald-400 tracking-tight mt-2 relative z-10">
+          <p className="text-xl sm:text-2xl font-black text-[#FFD700] tracking-tight mt-2 relative z-10">
             {formatBDT(rawTotalCollection)}
           </p>
         </div>
 
         {/* KPI: Monthly Expense */}
-        <div className="rounded-xl border border-amber-500/30 bg-gradient-to-br from-amber-900/60 to-amber-950 p-4 relative overflow-hidden group hover:border-amber-400/50 shadow-lg transition-all">
-          <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-amber-500/10 blur-xl group-hover:bg-amber-400/20 transition-all"></div>
+        <div className="rounded-xl border border-[#D4AF37]/30 bg-gradient-to-br from-[#4a050b] to-[#250003] p-4 relative overflow-hidden group hover:border-[#D4AF37]/60 shadow-lg transition-all">
+          <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-[#D4AF37]/5 blur-xl group-hover:bg-[#D4AF37]/15 transition-all"></div>
           <div className="flex items-center justify-between relative z-10">
-            <span className="text-[18px] font-bold text-amber-300 font-sans">
+            <span className="text-[18px] font-black text-[#D4AF37] font-sans">
               {t.stats_expenses}
             </span>
-            <div className="rounded-md p-1.5 bg-amber-500/20 text-amber-300 border border-amber-400/30">
+            <div className="rounded-md p-1.5 bg-[#D4AF37]/10 text-[#D4AF37] border border-[#D4AF37]/20">
               <TrendingDown className="h-4 w-4" />
             </div>
           </div>
-          <p className="text-xl sm:text-2xl font-bold text-amber-400 tracking-tight mt-2 relative z-10">
+          <p className="text-xl sm:text-2xl font-black text-[#FFD700] tracking-tight mt-2 relative z-10">
             {formatBDT(rawTotalExpense)}
           </p>
-          <p className="text-[9px] text-amber-200 mt-1 relative z-10">
+          <p className="text-[9px] text-amber-200/80 mt-1 relative z-10">
             • {formatNumber(expenses.length)} {language === 'bn' ? 'টি ভাউচার বিবরণ' : 'Disbursements'}
           </p>
         </div>
 
         {/* KPI: Outstanding Dues */}
-        <div className="rounded-xl border border-rose-500/30 bg-gradient-to-br from-rose-900/60 to-rose-950 p-4 relative overflow-hidden group hover:border-rose-400/50 shadow-lg transition-all">
-          <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-rose-500/10 blur-xl group-hover:bg-rose-400/20 transition-all"></div>
+        <div className="rounded-xl border border-[#D4AF37]/30 bg-gradient-to-br from-[#4a050b] to-[#250003] p-4 relative overflow-hidden group hover:border-[#D4AF37]/60 shadow-lg transition-all">
+          <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-[#D4AF37]/5 blur-xl group-hover:bg-[#D4AF37]/15 transition-all"></div>
           <div className="flex items-center justify-between relative z-10">
-            <span className="text-[18px] font-bold text-rose-300 font-sans">
+            <span className="text-[18px] font-black text-[#D4AF37] font-sans">
               {t.stats_dues}
             </span>
-            <div className="rounded-md p-1.5 bg-rose-500/20 text-rose-300 border border-rose-400/30">
+            <div className="rounded-md p-1.5 bg-[#D4AF37]/10 text-[#D4AF37] border border-[#D4AF37]/20">
               <AlertTriangle className="h-4 w-4" />
             </div>
           </div>
-          <p className="text-xl sm:text-2xl font-bold text-rose-400 tracking-tight mt-2 relative z-10">
+          <p className="text-xl sm:text-2xl font-black text-[#FFD700] tracking-tight mt-2 relative z-10">
             {formatBDT(rawTotalOutstanding)}
           </p>
-          <p className="text-[9px] text-rose-200 mt-1 relative z-10">
+          <p className="text-[9px] text-amber-200/80 mt-1 relative z-10">
             • {formatNumber(maintenanceDueCount)} {language === 'bn' ? 'টি ফ্ল্যাটে বকেয়া' : 'Unpaid Standard Cards'}
           </p>
         </div>
@@ -304,7 +304,7 @@ export default function Dashboard() {
           <div className="p-5 bg-gradient-to-b from-slate-800 to-slate-900 rounded-xl border border-slate-700 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.5)] group relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-bl-[100px] -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
             <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-cyan-500"></div>
-            <span className="text-[14px] text-slate-300 font-bold uppercase tracking-wider block relative z-10">
+            <span className="text-[14px] text-[#FFD700] font-bold uppercase tracking-wider block relative z-10">
               {language === 'bn' ? 'সর্বমোট লক্ষ্যমাত্রা' : 'Projected Target'}
             </span>
             <p className="text-[14px] font-black text-blue-400 mt-2 block tracking-wide relative z-10">
@@ -312,7 +312,7 @@ export default function Dashboard() {
                 constructionPhases.reduce((sum, p) => sum + (p.subscriptionPerMember * 72), 0)
               )}
             </p>
-            <span className="text-[14px] text-slate-400 font-medium block mt-2 relative z-10">
+            <span className="text-[14px] text-amber-200/85 font-medium block mt-2 relative z-10">
               {language === 'bn' ? '৭২ জন সদস্যের চাঁদা ঘোষণা অনুসারে' : 'Based on declared member subscriptions'}
             </span>
           </div>
@@ -320,7 +320,7 @@ export default function Dashboard() {
           <div className="p-5 bg-gradient-to-b from-slate-800 to-slate-900 rounded-xl border border-slate-700 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.5)] group relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-bl-[100px] -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
             <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 to-teal-400"></div>
-            <span className="text-[14px] text-slate-300 font-bold uppercase tracking-wider block relative z-10">
+            <span className="text-[14px] text-[#FFD700] font-bold uppercase tracking-wider block relative z-10">
               {language === 'bn' ? 'মোট সংগৃহীত চাঁদা' : 'Total Collected'}
             </span>
             <p className="text-[14px] font-black text-emerald-400 mt-2 block tracking-wide relative z-10">
@@ -331,7 +331,7 @@ export default function Dashboard() {
                 )
               )}
             </p>
-            <div className="flex items-center justify-between mt-2 text-[14px] font-medium text-emerald-500 relative z-10">
+            <div className="flex items-center justify-between mt-2 text-[14px] font-medium text-amber-200 relative z-10">
               <span>
                 {Math.round(
                   (constructionPhases.reduce((sum, p) => sum + p.deposits.reduce((pSum, d) => pSum + d.amountPaid, 0), 0) /
@@ -344,7 +344,7 @@ export default function Dashboard() {
           <div className="p-5 bg-gradient-to-b from-slate-800 to-slate-900 rounded-xl border border-slate-700 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.5)] group relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-rose-500/5 rounded-bl-[100px] -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
             <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-rose-500 to-pink-500"></div>
-            <span className="text-[14px] text-slate-300 font-bold uppercase tracking-wider block relative z-10">
+            <span className="text-[14px] text-[#FFD700] font-bold uppercase tracking-wider block relative z-10">
               {language === 'bn' ? 'মোট নির্মাণ ব্যয়' : 'Incurred Cost'}
             </span>
             <p className="text-[14px] font-black text-rose-400 mt-2 block tracking-wide relative z-10">
@@ -355,15 +355,15 @@ export default function Dashboard() {
                 )
               )}
             </p>
-            <span className="text-[14px] text-slate-400 font-medium block mt-2 relative z-10">
+            <span className="text-[14px] text-amber-200/85 font-medium block mt-2 relative z-10">
               {language === 'bn' ? 'অনুমোদিত ভাউচার অনুযায়ী ব্যয়' : 'Total spent on materials & labor'}
             </span>
           </div>
 
           <div className="p-5 bg-gradient-to-b from-slate-800 to-slate-900 rounded-xl border border-slate-700 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.5)] group relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/5 rounded-bl-[100px] -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
-            <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-amber-400 to-[#D4AF37]"></div>
-            <span className="text-[14px] text-slate-300 font-bold uppercase tracking-wider block relative z-10">
+            <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#D4AF37] to-amber-400"></div>
+            <span className="text-[14px] text-[#FFD700] font-bold uppercase tracking-wider block relative z-10">
               {language === 'bn' ? 'তহবিলের বর্তমান ব্যালেন্স' : 'Current Fund Balance'}
             </span>
             <p className="text-[14px] font-black text-[#D4AF37] mt-2 block tracking-wide relative z-10">
@@ -372,7 +372,7 @@ export default function Dashboard() {
                 constructionPhases.reduce((sum, p) => sum + p.expenses.reduce((pSum, e) => pSum + e.amount, 0), 0)
               )}
             </p>
-            <span className="text-[14px] text-slate-400 font-medium block mt-2 relative z-10">
+            <span className="text-[14px] text-amber-200/85 font-medium block mt-2 relative z-10">
               {language === 'bn' ? 'ব্যয় বাদ দিয়ে অবশিষ্ট তহবিল' : 'Remaining cash for construction work'}
             </span>
           </div>

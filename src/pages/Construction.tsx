@@ -1922,81 +1922,96 @@ export default function Construction() {
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
         
         {/* Total Projected Collection Targets */}
-        <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-indigo-50 to-indigo-100 hover:from-indigo-100/80 hover:to-indigo-200/50 p-5 border border-indigo-200/40">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-bold uppercase tracking-wider text-indigo-700 font-sans">
+        <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-[#4a050b] to-[#250003] hover:from-[#5c0b12] hover:to-[#330106] p-5 border border-[#D4AF37]/30 shadow-md group hover:border-[#D4AF37]/65 transition-all">
+          <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-[#D4AF37]/5 blur-xl group-hover:bg-[#D4AF37]/15 transition-all"></div>
+          <div className="flex items-center justify-between relative z-10">
+            <p className="text-xs font-black uppercase tracking-wider text-[#D4AF37] font-sans">
               {language === 'bn' ? 'মোট লক্ষ্যমাত্রা' : 'Expected Targets'}
             </p>
-            <Coins className="h-5 w-5 text-indigo-600" />
+            <div className="rounded-md p-1.5 bg-[#D4AF37]/10 text-[#D4AF37] border border-[#D4AF37]/20">
+              <Coins className="h-4 w-4" />
+            </div>
           </div>
-          <p className="mt-4 text-2xl font-extrabold text-slate-900 font-sans leading-none">
+          <p className="mt-4 text-2xl font-black text-[#FFD700] font-sans leading-none relative z-10">
             {formatBDT(totalProjected)}
           </p>
-          <p className="mt-2 text-[10px] text-indigo-600 font-mono font-bold uppercase">
+          <p className="mt-2 text-[10px] text-amber-200/80 font-mono font-bold uppercase relative z-10">
             {language === 'bn' ? `${formatNumber(memberCount)} জন সদস্যের চাঁদা` : `${memberCount} Unit Contributions`}
           </p>
         </div>
 
         {/* Total Deposited/Collected */}
-        <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-emerald-50 to-emerald-100 hover:from-emerald-100/80 hover:to-emerald-200/50 p-5 border border-emerald-200/40">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-bold uppercase tracking-wider text-emerald-700 font-sans">
+        <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-[#4a050b] to-[#250003] hover:from-[#5c0b12] hover:to-[#330106] p-5 border border-[#D4AF37]/30 shadow-md group hover:border-[#D4AF37]/65 transition-all">
+          <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-[#D4AF37]/5 blur-xl group-hover:bg-[#D4AF37]/15 transition-all"></div>
+          <div className="flex items-center justify-between relative z-10">
+            <p className="text-xs font-black uppercase tracking-wider text-[#D4AF37] font-sans">
               {language === 'bn' ? 'মোট সংগৃহীত চাঁদা' : 'Total Deposits'}
             </p>
-            <CheckCircle className="h-5 w-5 text-emerald-600" />
+            <div className="rounded-md p-1.5 bg-[#D4AF37]/10 text-[#D4AF37] border border-[#D4AF37]/20">
+              <CheckCircle className="h-4 w-4" />
+            </div>
           </div>
-          <p className="mt-4 text-2xl font-extrabold text-slate-900 font-sans leading-none">
+          <p className="mt-4 text-2xl font-black text-[#FFD700] font-sans leading-none relative z-10">
             {formatBDT(totalDeposits)}
           </p>
-          <div className="mt-2 flex items-center justify-between text-[10px] text-emerald-600 font-mono font-bold">
+          <div className="mt-2 flex items-center justify-between text-[10px] text-amber-200/80 font-mono font-bold relative z-10">
             <span>{formatNumber(totalProjected ? Math.round((totalDeposits / totalProjected) * 100) : 0)}% {language === 'bn' ? 'আদায় সম্পন্ন' : 'Collected'}</span>
           </div>
         </div>
 
         {/* Expenses incurred */}
-        <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-rose-50 to-rose-100 hover:from-rose-100/80 hover:to-rose-200/50 p-5 border border-rose-200/40">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-bold uppercase tracking-wider text-rose-700 font-sans">
+        <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-[#4a050b] to-[#250003] hover:from-[#5c0b12] hover:to-[#330106] p-5 border border-[#D4AF37]/30 shadow-md group hover:border-[#D4AF37]/65 transition-all">
+          <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-[#D4AF37]/5 blur-xl group-hover:bg-[#D4AF37]/15 transition-all"></div>
+          <div className="flex items-center justify-between relative z-10">
+            <p className="text-xs font-black uppercase tracking-wider text-[#D4AF37] font-sans">
               {language === 'bn' ? 'মোট নির্মাণ ব্যয়' : 'Total Expended'}
             </p>
-            <TrendingDown className="h-5 w-5 text-rose-600" />
+            <div className="rounded-md p-1.5 bg-[#D4AF37]/10 text-[#D4AF37] border border-[#D4AF37]/20">
+              <TrendingDown className="h-4 w-4" />
+            </div>
           </div>
-          <p className="mt-4 text-2xl font-extrabold text-slate-900 font-sans leading-none">
+          <p className="mt-4 text-2xl font-black text-[#FFD700] font-sans leading-none relative z-10">
             {formatBDT(totalExpenses)}
           </p>
-          <p className="mt-2 text-[10px] text-rose-600 font-mono font-bold uppercase">
+          <p className="mt-2 text-[10px] text-amber-200/80 font-mono font-bold uppercase relative z-10">
             {language === 'bn' ? 'সবগুলো ধাপ মিলিয়ে' : 'All construction phases'}
           </p>
         </div>
 
         {/* Total Outstanding Dues */}
-        <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-amber-50 to-amber-100 hover:from-amber-100/80 hover:to-amber-200/50 p-5 border border-amber-200/40">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-bold uppercase tracking-wider text-amber-700 font-sans">
+        <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-[#4a050b] to-[#250003] hover:from-[#5c0b12] hover:to-[#330106] p-5 border border-[#D4AF37]/30 shadow-md group hover:border-[#D4AF37]/65 transition-all">
+          <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-[#D4AF37]/5 blur-xl group-hover:bg-[#D4AF37]/15 transition-all"></div>
+          <div className="flex items-center justify-between relative z-10">
+            <p className="text-xs font-black uppercase tracking-wider text-[#D4AF37] font-sans">
               {language === 'bn' ? 'অবশিষ্ট বকেয়া' : 'Outstanding Dues'}
             </p>
-            <AlertCircle className="h-5 w-5 text-amber-600" />
+            <div className="rounded-md p-1.5 bg-[#D4AF37]/10 text-[#D4AF37] border border-[#D4AF37]/20">
+              <AlertCircle className="h-4 w-4" />
+            </div>
           </div>
-          <p className="mt-4 text-2xl font-extrabold text-slate-900 font-sans leading-none">
+          <p className="mt-4 text-2xl font-black text-[#FFD700] font-sans leading-none relative z-10">
             {formatBDT(totalDues)}
           </p>
-          <p className="mt-2 text-[10px] text-amber-600 font-mono font-bold uppercase">
+          <p className="mt-2 text-[10px] text-amber-200/80 font-mono font-bold uppercase relative z-10">
             {language === 'bn' ? 'বকেয়া চাঁদা আদায়যোগ্য' : 'Due for collection'}
           </p>
         </div>
 
         {/* Available Structural balance */}
-        <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-sky-50 to-sky-100 hover:from-sky-100/80 hover:to-sky-200/50 p-5 border border-sky-200/40">
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-bold uppercase tracking-wider text-sky-700 font-sans">
+        <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-[#4a050b] to-[#250003] hover:from-[#5c0b12] hover:to-[#330106] p-5 border border-[#D4AF37]/30 shadow-md group hover:border-[#D4AF37]/65 transition-all">
+          <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-[#D4AF37]/5 blur-xl group-hover:bg-[#D4AF37]/15 transition-all"></div>
+          <div className="flex items-center justify-between relative z-10">
+            <p className="text-xs font-black uppercase tracking-wider text-[#D4AF37] font-sans">
               {language === 'bn' ? 'তহবিল উদ্বৃত্ত' : 'Available Fund'}
             </p>
-            <Building2 className="h-5 w-5 text-sky-600" />
+            <div className="rounded-md p-1.5 bg-[#D4AF37]/10 text-[#D4AF37] border border-[#D4AF37]/20">
+              <Building2 className="h-4 w-4" />
+            </div>
           </div>
-          <p className="mt-4 text-2xl font-extrabold text-slate-900 font-sans leading-none">
+          <p className="mt-4 text-2xl font-black text-[#FFD700] font-sans leading-none relative z-10">
             {formatBDT(currentNetFund)}
           </p>
-          <p className="mt-2 text-[10px] text-sky-600 font-mono font-bold uppercase">
+          <p className="mt-2 text-[10px] text-amber-200/80 font-mono font-bold uppercase relative z-10">
             {language === 'bn' ? 'ট্রেজারি নেট ব্যালেন্স' : 'Net cash in hand'}
           </p>
         </div>
@@ -2165,11 +2180,11 @@ export default function Construction() {
 
             {/* Sub Stats Dashboard */}
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 pt-1">
-              <div className="p-3 bg-slate-50/80 rounded-lg border border-slate-100">
-                <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider block">
+              <div className="p-3 bg-gradient-to-br from-[#4a050b] to-[#250003] rounded-lg border border-[#D4AF37]/35 shadow-sm">
+                <span className="text-[10px] text-[#D4AF37] font-black uppercase tracking-wider block">
                   {language === 'bn' ? 'ঘোষিত সদস্য চাঁদা' : 'Contribution Per Member'}
                 </span>
-                <p className="text-base font-extrabold text-slate-900 font-sans mt-1">
+                <p className="text-base font-black text-[#FFD700] font-sans mt-1">
                   {formatBDT(activePhase.subscriptionPerMember)}
                 </p>
                 {isAdmin && (
@@ -2178,45 +2193,45 @@ export default function Construction() {
                       setSubAmount(activePhase.subscriptionPerMember);
                       setShowSubModal(true);
                     }}
-                    className="text-[10px] font-bold text-emerald-600 hover:text-emerald-700 hover:underline mt-1 cursor-pointer block text-left"
+                    className="text-[10px] font-black text-amber-200 hover:text-amber-350 hover:underline mt-1 cursor-pointer block text-left"
                   >
                     {language === 'bn' ? 'চাঁদা পরিবর্তন করুন' : 'Change Amount'}
                   </button>
                 )}
               </div>
 
-              <div className="p-3 bg-slate-50/80 rounded-lg border border-slate-100">
-                <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider block">
+              <div className="p-3 bg-gradient-to-br from-[#4a050b] to-[#250003] rounded-lg border border-[#D4AF37]/35 shadow-sm">
+                <span className="text-[10px] text-[#D4AF37] font-black uppercase tracking-wider block">
                   {language === 'bn' ? 'সর্বমোট লক্ষ্যমাত্রা' : 'Target Collections'}
                 </span>
-                <p className="text-base font-extrabold text-slate-950 font-sans mt-1">
+                <p className="text-base font-black text-[#FFD700] font-sans mt-1">
                   {formatBDT(phaseTotalTarget)}
                 </p>
-                <span className="text-[9px] text-slate-500 block font-mono">
+                <span className="text-[9px] text-amber-200/80 block font-mono">
                   {language === 'bn' ? `${formatNumber(memberCount)} জন সদস্য × ${formatBDT(activePhase.subscriptionPerMember)}` : `${memberCount} units × ${formatBDT(activePhase.subscriptionPerMember)}`}
                 </span>
               </div>
 
-              <div className="p-3 bg-slate-50/80 rounded-lg border border-slate-100">
-                <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider block">
+              <div className="p-3 bg-gradient-to-br from-[#4a050b] to-[#250003] rounded-lg border border-[#D4AF37]/35 shadow-sm">
+                <span className="text-[10px] text-[#D4AF37] font-black uppercase tracking-wider block">
                   {language === 'bn' ? 'আদায়কৃত চাঁদা' : 'Total Collected'}
                 </span>
-                <p className="text-base font-extrabold text-slate-900 font-sans mt-1">
+                <p className="text-base font-black text-[#FFD700] font-sans mt-1">
                   {formatBDT(phaseTotalDeposited)}
                 </p>
-                <span className="text-[9px] text-emerald-600 block font-bold font-sans">
+                <span className="text-[9px] text-amber-200 block font-bold font-sans">
                   {language === 'bn' ? `অবশিষ্ট বকেয়া: ${formatBDT(phaseRemainingDue)}` : `Remaining Due: ${formatBDT(phaseRemainingDue)}`}
                 </span>
               </div>
 
-              <div className="p-3 bg-slate-50/80 rounded-lg border border-slate-100">
-                <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider block">
+              <div className="p-3 bg-gradient-to-br from-[#4a050b] to-[#250003] rounded-lg border border-[#D4AF37]/35 shadow-sm">
+                <span className="text-[10px] text-[#D4AF37] font-black uppercase tracking-wider block">
                   {language === 'bn' ? 'ধাপের ব্যয়' : 'Phase Expenditure'}
                 </span>
-                <p className="text-base font-extrabold text-slate-900 font-sans mt-1">
+                <p className="text-base font-black text-[#FFD700] font-sans mt-1">
                   {formatBDT(phaseTotalSpent)}
                 </p>
-                <span className="text-[9px] text-slate-500 block font-bold">
+                <span className="text-[9px] text-amber-200 block font-bold">
                   {language === 'bn' ? `ব্যালেন্স: ${formatBDT(phaseBalance)}` : `Treasury Bal: ${formatBDT(phaseBalance)}`}
                 </span>
               </div>
